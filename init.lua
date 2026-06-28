@@ -819,7 +819,9 @@ require('lazy').setup({
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      require('mini.surround').setup {
+        n_lines = 0,
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -857,6 +859,10 @@ require('lazy').setup({
         'query',
         'vim',
         'vimdoc',
+        'javascript',
+        'typescript',
+        'css',
+        'embedded_template',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -868,6 +874,10 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      vim.filetype.add { extension = { ejs = 'ejs' } },
+      vim.treesitter.language.register('html', 'ejs'),
+      vim.treesitter.language.register('javascript', 'ejs'),
+      vim.treesitter.language.register('embedded_template', 'ejs'),
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
